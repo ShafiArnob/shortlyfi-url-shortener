@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 import { BASE_URL } from "../constant/urlConstant";
+import { createUrl } from "../firebase/firebaseFunctions";
 
 const Home = () => {
   const [longUrl, setLongUrl] = useState('')
@@ -16,7 +17,7 @@ const Home = () => {
       shortUrl: generateShortUrl(),
       visited: 0
     }
-    console.log(data);
+    const res = createUrl(data);
   }
 
   return (

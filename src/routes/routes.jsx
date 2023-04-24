@@ -6,6 +6,10 @@ const routes = createBrowserRouter([
     path: "/",
     element: (<Home/>)
   },
+  {
+    path: ":id",
+    element: (<Home/>)
+  }
 ])
 
 export default routes
