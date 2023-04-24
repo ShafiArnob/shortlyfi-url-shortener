@@ -15,7 +15,7 @@ export const getUrl = async(shortUrl) =>{
     // doc.data() is never undefined for query doc snapshots
     tempObj = {id:doc.id, ...doc.data()}
   });
-  console.log(tempObj);
+  // console.log(tempObj);
   if(Object.keys(tempObj).length){
     return tempObj
   }
@@ -23,6 +23,8 @@ export const getUrl = async(shortUrl) =>{
     return new Error("URL Not Found")
   }
 }
+
+// increments visited page if redirected
 export const incrementVisitedUrl = () =>{
   
 } 
