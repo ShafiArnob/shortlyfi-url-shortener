@@ -23,3 +23,6 @@ export const getUrl = async(shortUrl) =>{
     return new Error("URL Not Found")
   }
 }
+export const incrementVisitedUrl = () =>{
+  
+} 
