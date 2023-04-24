@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDocs, query, setDoc, where } from "firebase/firestore"; 
+import { addDoc, collection, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore"; 
 import { db } from "./config";
 
 export const createUrl = async(data) => {
@@ -25,6 +25,11 @@ export const getUrl = async(shortUrl) =>{
 }
 
 // increments visited page if redirected
-export const incrementVisitedUrl = () =>{
-  
+export const incrementVisitedUrl = async (id, prevVisited) =>{
+  const ref = doc(db, "urls", id);
+
+// Set the "capital" field of the city 'DC'
+  await updateDoc(ref, {
+    visited: ++prevVisited
+  });
 } 

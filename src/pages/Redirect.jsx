@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getUrl } from "../firebase/firebaseFunctions";
+import { getUrl, incrementVisitedUrl } from "../firebase/firebaseFunctions";
 import { BASE_URL } from "../constant/urlConstant";
 import { useEffect, useState } from "react";
 
@@ -18,6 +18,10 @@ const Redirect = () => {
 
   }, [id])
 
+  const redirectToUrl = async() =>{
+    await incrementVisitedUrl(url.id, url.visited)
+    window.location.replace(url.longUrl);
+  }
   // Checks if URL Exists 
   if(url instanceof Error){
     return <h1>Url Not Found</h1>
@@ -30,7 +34,7 @@ const Redirect = () => {
 
   //Redirect to long URL  
   if(url.longUrl){
-    window.location.replace(url.longUrl);
+    redirectToUrl()
   }
   
   //While redirecting
