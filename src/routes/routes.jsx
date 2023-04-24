@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
+import Redirect from "../pages/Redirect";
 
 const routes = createBrowserRouter([
   {
@@ -8,7 +9,7 @@ const routes = createBrowserRouter([
   },
   {
     path: ":id",
-    element: (<Home/>)
+    element: (<Redirect/>)
   }
 ])
 
