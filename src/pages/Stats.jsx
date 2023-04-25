@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUrl } from "../firebase/firebaseFunctions";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import {TiTick} from 'react-icons/ti'
 import { BASE_URL } from "../constant/urlConstant";
 
 const Stats = () => {
   let { id } = useParams();
   const [url, setUrl] = useState({})
+  const [copied, setCopied] = useState(false)
 
   useEffect( ()=>{
 
@@ -35,7 +38,7 @@ const Stats = () => {
           <p className="ml-1 text-lg text-gray-400 font-semibold">Long URL</p>
           <div className="flex rounded-2xl bg-[#252740] overflow-hidden">
             <input type="text" value={url.longUrl} className="p-2 py-4 mx-2 w-full focus:outline-none  text-gray-300 bg-[#252740]" disabled/>
-            <button className="m-2 rounded-xl bg-[#7b54e9] hover:bg-[#6143b6] px-3 py-1">Copy</button>
+            {/* <button className="m-2 rounded-xl bg-[#7b54e9] hover:bg-[#6143b6] px-3 py-1">Copy</button> */}
           </div>
         </div>
 
@@ -43,7 +46,9 @@ const Stats = () => {
           <p className="ml-1 text-lg text-gray-400 font-semibold">Short URL</p>
           <div className="flex rounded-2xl bg-[#252740] overflow-hidden">
             <input type="text" value={url.shortUrl} className="p-2 py-4 mx-2 w-full focus:outline-none  text-gray-300 bg-[#252740] " disabled/>
-            <button className="m-2 rounded-xl bg-[#7b54e9] hover:bg-[#6143b6] px-3 py-1">Copy</button>
+            <CopyToClipboard text={url.shortUrl} onCopy={() => setCopied(true)}>
+              <button title="Copy to Clipboard" className="m-2 rounded-xl bg-[#7b54e9] hover:bg-[#6143b6] px-3 py-1 ">{copied ? <TiTick/> : <span className="transition-all delay-75 duration-300">Copy</span>}</button>
+            </CopyToClipboard>
           </div>
         </div>
 
