@@ -6,6 +6,7 @@ import { createUrl, getUrl } from "../firebase/firebaseFunctions";
 
 const Home = () => {
   const [longUrl, setLongUrl] = useState('')
+  const [alias, setAlias] = useState('')
   const [urlExists, setUrlExists] = useState(false)
 
   const generateShortUrl = () => {
@@ -32,23 +33,33 @@ const Home = () => {
   }
 
   return (
-    <div className="h-[100vh] flex flex-col justify-center items-center">
-      <div className="bg-gray-800 p-4 w-1/3">
+    <div className="h-[100vh]  flex flex-col justify-center items-center">
+      {/* form container */}
+      <div className="bg-[#1b1c30] p-8 w-1/3 rounded-2xl z-20 opacity-85 border-t-2 border-l-2 border-[#7b54e9] border-opacity-30">
         <form onSubmit={handleSubmit} action="" className="flex flex-col space-y-4">
-          <div>
-            <p>Enter Long URL</p>
-            <input type="text" className="w-full text-black" onChange={e=>setLongUrl(e.target.value)} value={longUrl}/>
+          <h1 className="text-3xl text-[#ad8fff] font-bold pb-3">Shortlyfi</h1>    
+          <div className="p-2 py-4 rounded-2xl bg-[#252740] ">
+            {/* <p>Enter Long URL</p> */}
+            <input type="text" className="mx-2 w-full focus:outline-none  text-gray-300 bg-[#252740] " placeholder="Enter Long URL" onChange={e=>setLongUrl(e.target.value)} value={longUrl}/>
           </div>
-          <button className="bg-green-600 p-2">Generate</button>
+
+          <div className="p-2  py-4 rounded-2xl bg-[#252740]">
+            {/* <p>Enter Long URL</p> */}
+            <input type="text" className="mx-2 w-full focus:outline-none text-gray-300 bg-[#252740]" placeholder="alias (optional)" onChange={e=>setAlias(e.target.value)} value={alias}/>
+          </div>
+
+          <button className=" p-2 rounded-2xl py-3 bg-[#7b54e9] hover:bg-[#6143b6]">Generate</button>
+        </form>
+      </div>
+
           {
             urlExists && (
-              <span className="bg-red-500 bg-opacity-80 p-1 py-1.5 border border-red-900 text-sm font-bold">
-                URL Already Exists
+              <span className="w-1/3 p-6 my-5 bg-red-600 rounded-2xl bg-opacity-60 border-2 border-red-500  text-base font-bold opacity-80">
+                Alias Not Available
               </span>
             )
           }
-        </form>
-      </div>
+
     </div>
   )
 }
