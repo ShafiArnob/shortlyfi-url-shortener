@@ -21,15 +21,21 @@ const Home = () => {
       shortUrl: generateShortUrl(),
       visited: 0
     }
+    //check if short url exists or not
     const checkUrlExists = await getUrl(data.shortUrl)
-    // console.log(checkUrlExists);
+    //if does not exists sets error 
     if(Object.keys(checkUrlExists).length > 0){
       setUrlExists(true)
     }
+    //else creates URL
     else{
       const res = await createUrl(data);
-
+      if(res){
+        window.open(`${data.shortUrl}/stats`);
+      }
     }
+
+
   }
 
   return (
