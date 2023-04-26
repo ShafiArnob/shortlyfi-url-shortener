@@ -9,8 +9,14 @@ const Home = () => {
   const [alias, setAlias] = useState('')
   const [urlExists, setUrlExists] = useState(false)
 
-  const generateShortUrl = () => {
-    const url = BASE_URL + uuidv4().split("", 6).join("")
+  const generateShortUrl = (alias = '') => {
+    let url;
+    if(!alias){
+      url = BASE_URL + uuidv4().split("", 6).join("")
+    }
+    else{
+      url = BASE_URL + alias
+    }
     return url
   }
 
@@ -18,7 +24,7 @@ const Home = () => {
     e.preventDefault()
     const data = {
       longUrl: longUrl,
-      shortUrl: generateShortUrl(),
+      shortUrl: alias ? generateShortUrl(alias) : generateShortUrl(),
       visited: 0
     }
     //check if short url exists or not
@@ -30,6 +36,7 @@ const Home = () => {
     //else creates URL
     else{
       const res = await createUrl(data);
+      //opens new tab to stats page of the newly created short url
       if(res){
         window.open(`${data.shortUrl}/stats`);
       }
