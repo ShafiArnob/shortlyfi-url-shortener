@@ -4,6 +4,8 @@ import { getUrl } from "../firebase/firebaseFunctions";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import {TiTick} from 'react-icons/ti'
 import { BASE_URL } from "../constant/urlConstant";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Stats = () => {
   let { id } = useParams();
@@ -17,7 +19,19 @@ const Stats = () => {
     }
     return () => unsub()
   }, [id])
-  
+
+  //Toast
+  const notify = () => toast.success('Copied To Clipboard !', {
+      position: "top-center",
+      autoClose: 3001,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
   return (
     <div className="h-[100vh]  flex flex-col justify-center items-center">
 
@@ -45,7 +59,7 @@ const Stats = () => {
           <div className="flex rounded-2xl bg-[#252740] overflow-hidden">
             <input type="text" value={url.shortUrl} className="p-2 py-4 mx-2 w-full focus:outline-none  text-gray-300 bg-[#252740] " disabled/>
             <CopyToClipboard text={url.shortUrl} onCopy={() => setCopied(true)}>
-              <button title="Copy to Clipboard" className="m-2 rounded-xl bg-[#7b54e9] hover:bg-[#6143b6] px-3 py-1 ">{copied ? <TiTick/> : <span className="transition-all delay-75 duration-300">Copy</span>}</button>
+              <button onClick={notify} title="Copy to Clipboard" className="m-2 rounded-xl bg-[#7b54e9] hover:bg-[#6143b6] px-3 py-1 ">{copied ? <TiTick/> : <span className="transition-all delay-75 duration-300">Copy</span>}</button>
             </CopyToClipboard>
           </div>
         </div>
