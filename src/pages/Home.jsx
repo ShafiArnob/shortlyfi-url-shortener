@@ -3,12 +3,15 @@ import { useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 import { BASE_URL } from "../constant/urlConstant";
 import { createUrl, getUrl } from "../firebase/firebaseFunctions";
+import { ScaleLoader } from "react-spinners";
 
 const Home = () => {
   const [longUrl, setLongUrl] = useState('')
   const [alias, setAlias] = useState('')
   const [urlExists, setUrlExists] = useState(false)
+  const [loader, setLoader] = useState(false)
 
+  //generates short URL using alias or uuid first 6 chars
   const generateShortUrl = (alias = '') => {
     let url;
     if(!alias){
@@ -22,27 +25,31 @@ const Home = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
+    setLoader(true)
+
     const data = {
       longUrl: longUrl,
       shortUrl: alias ? generateShortUrl(alias) : generateShortUrl(),
       visited: 0
     }
+    
     //check if short url exists or not
     const checkUrlExists = await getUrl(data.shortUrl)
+    
     //if does not exists sets error 
     if(Object.keys(checkUrlExists).length > 0){
       setUrlExists(true)
+      setLoader(false)
     }
     //else creates URL
     else{
       const res = await createUrl(data);
       //opens new tab to stats page of the newly created short url
       if(res){
+        setLoader(false)
         window.open(`${data.shortUrl}/stats`);
       }
     }
-
-
   }
 
   return (
@@ -61,7 +68,11 @@ const Home = () => {
             <input type="text" pattern="^[^/]*$" title="Enter Valid Alias" className="mx-2 w-full focus:outline-none text-gray-300 bg-[#252740]" placeholder="alias (optional)" onChange={e=>setAlias(e.target.value)} value={alias}/>
           </div>
 
-          <button className=" p-2 rounded-2xl py-3 bg-[#7b54e9] hover:bg-[#6143b6]">Generate</button>
+          <button className=" p-2 rounded-2xl py-3 bg-[#7b54e9] hover:bg-[#6143b6]">
+            {
+              loader ? <ScaleLoader color="#9ca3af" height={10}/> : "Generate" 
+            }
+          </button>
         </form>
       </div>
 

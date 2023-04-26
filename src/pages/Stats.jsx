@@ -11,15 +11,13 @@ const Stats = () => {
   const [copied, setCopied] = useState(false)
 
   useEffect( ()=>{
-
     async function unsub() {
       const res = await getUrl(BASE_URL+id)
       setUrl(res);
     }
-
     return () => unsub()
-
   }, [id])
+  
   return (
     <div className="h-[100vh]  flex flex-col justify-center items-center">
 
