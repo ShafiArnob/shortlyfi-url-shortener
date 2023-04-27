@@ -33,9 +33,9 @@ const Stats = () => {
     });
 
   return (
-    <div className="h-[100vh]  flex flex-col justify-center items-center">
+    <div className="h-[100vh] w-full flex flex-col justify-center items-center">
 
-      <div className="space-y-3 bg-[#1b1c30] p-8 w-1/3 rounded-2xl z-20 opacity-85 border-t-2 border-l-2 border-[#7b54e9] border-opacity-30">
+      <div className="w-11/12  max-w-sm space-y-3 bg-[#1b1c30] p-8 rounded-2xl z-20 opacity-85 border-t-2 border-l-2 border-[#7b54e9] border-opacity-30">
         <div className="flex justify-between">
           <h1 className="text-3xl text-[#ad8fff] font-bold pb-3">Shortlyfi</h1>
 

@@ -55,7 +55,7 @@ const Home = () => {
   return (
     <div className="h-[100vh]  flex flex-col justify-center items-center">
       {/* form container */}
-      <div className="bg-[#1b1c30] p-8 w-1/3 rounded-2xl z-20 opacity-85 border-t-2 border-l-2 border-[#7b54e9] border-opacity-30">
+      <div className="bg-[#1b1c30] p-8 w-11/12  max-w-sm rounded-2xl z-20 opacity-85 border-t-2 border-l-2 border-[#7b54e9] border-opacity-30 ">
         <form onSubmit={handleSubmit} action="" className="flex flex-col space-y-4">
           <h1 className="text-3xl text-[#ad8fff] font-bold pb-3">Shortlyfi</h1>    
           <div className="p-2 py-4 rounded-2xl bg-[#252740] ">
