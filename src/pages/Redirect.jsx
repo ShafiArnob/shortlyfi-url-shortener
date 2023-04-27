@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { getUrl, incrementVisitedUrl } from "../firebase/firebaseFunctions";
 import { BASE_URL } from "../constant/urlConstant";
 import { useEffect, useState } from "react";
+import { RedirectMsg } from "../components/RedirectMsg";
 
 const Redirect = () => {
   let { id } = useParams();
@@ -23,12 +24,13 @@ const Redirect = () => {
 
   //* Checks if URL Exists 
   if(url instanceof Error){
-    return <h1>Url Not Found</h1>
+    return <RedirectMsg message={"URL Not Found"}/>
   }
   
   //*Loading Meanwhile data is fetched
   if(Object.keys(url).length===0){
-    return <h1>Loading...</h1>
+    return <RedirectMsg message={"Finding URL"}/>
+
   }
 
   //*Redirect to long URL  
@@ -38,7 +40,7 @@ const Redirect = () => {
   
   //*While redirecting
   return (
-    <div>Redirecting</div>
+    <RedirectMsg message={"Redirecting..."}/>
   )
 }
 
