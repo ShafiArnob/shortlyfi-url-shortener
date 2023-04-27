@@ -20,7 +20,8 @@ const Redirect = () => {
   //*Redirect function
   const redirectToUrl = async() =>{
     await incrementVisitedUrl(url.id, url.visited)
-    window.location.replace(url.longUrl);
+    // window.location.replace(url.longUrl);
+    window.location.href = url.longUrl;
   }
 
   //* Checks if URL Exists 

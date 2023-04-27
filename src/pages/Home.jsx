@@ -10,7 +10,14 @@ const Home = () => {
   const [alias, setAlias] = useState('')
   const [urlExists, setUrlExists] = useState(false)
   const [loader, setLoader] = useState(false)
-
+  
+  //check if long url has http or https in front
+  const checkHttp = (url) => {
+    if(url.includes('http://') || url.includes('https://')){
+      return true
+    }
+    return false
+  }
   //generates short URL using alias or uuid first 6 chars
   const generateShortUrl = (alias = '') => {
     let url;
@@ -26,7 +33,10 @@ const Home = () => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     setLoader(true)
-
+    const urlIncludesHttp = checkHttp(longUrl)
+    if(!urlIncludesHttp){
+      setLongUrl(`http://${longUrl}`)
+    } 
     const data = {
       longUrl: longUrl,
       shortUrl: alias ? generateShortUrl(alias) : generateShortUrl(),
@@ -57,10 +67,10 @@ const Home = () => {
       {/* form container */}
       <div className="bg-[#1b1c30] p-8 w-11/12  max-w-sm rounded-2xl z-20 opacity-85 border-t-2 border-l-2 border-[#7b54e9] border-opacity-30 ">
         <form onSubmit={handleSubmit} action="" className="flex flex-col space-y-4">
-          <h1 className="text-3xl text-[#ad8fff] font-bold pb-3">Shortlyfi</h1>    
+          <h1 className="text-3xl text-[#ad8fff] font-bold pb-3">Shortyfi</h1>    
           <div className="p-2 py-4 rounded-2xl bg-[#252740] ">
             {/* <p>Enter Long URL</p> */}
-            <input type="text" pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=-]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)" title="Enter valid Link" className="mx-2 w-full focus:outline-none  text-gray-300 bg-[#252740] " placeholder="Enter Long URL" onChange={e=>setLongUrl(e.target.value)} value={longUrl}/>
+            <input type="text" pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=-]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)" title="Enter valid Link" className="mx-2 w-full focus:outline-none  text-gray-300 bg-[#252740] " placeholder="Enter Long URL" onChange={e=>setLongUrl(e.target.value)} value={longUrl}/>
           </div>
 
           <div className="p-2  py-4 rounded-2xl bg-[#252740]">

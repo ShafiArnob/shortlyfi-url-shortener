@@ -37,7 +37,7 @@ const Stats = () => {
 
       <div className="w-11/12  max-w-sm space-y-3 bg-[#1b1c30] p-8 rounded-2xl z-20 opacity-85 border-t-2 border-l-2 border-[#7b54e9] border-opacity-30">
         <div className="flex justify-between">
-          <h1 className="text-3xl text-[#ad8fff] font-bold pb-3">Shortlyfi</h1>
+          <h1 className="text-3xl text-[#ad8fff] font-bold pb-3">Shortyfi</h1>
 
           <div className="ml-1 flex items-center space-x-4">
             <p className="font-bold text-xl text-gray-400">Visited</p>
