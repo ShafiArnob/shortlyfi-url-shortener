@@ -60,7 +60,7 @@ const Home = () => {
           <h1 className="text-3xl text-[#ad8fff] font-bold pb-3">Shortlyfi</h1>    
           <div className="p-2 py-4 rounded-2xl bg-[#252740] ">
             {/* <p>Enter Long URL</p> */}
-            <input type="text" pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)" title="Enter valid Link" className="mx-2 w-full focus:outline-none  text-gray-300 bg-[#252740] " placeholder="Enter Long URL" onChange={e=>setLongUrl(e.target.value)} value={longUrl}/>
+            <input type="text" pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=-]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)" title="Enter valid Link" className="mx-2 w-full focus:outline-none  text-gray-300 bg-[#252740] " placeholder="Enter Long URL" onChange={e=>setLongUrl(e.target.value)} value={longUrl}/>
           </div>
 
           <div className="p-2  py-4 rounded-2xl bg-[#252740]">

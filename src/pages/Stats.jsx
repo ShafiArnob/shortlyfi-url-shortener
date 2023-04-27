@@ -17,7 +17,7 @@ const Stats = () => {
       const res = await getUrl(BASE_URL+id)
       setUrl(res);
     }
-    return () => unsub()
+    unsub()
   }, [id])
 
   //Toast

@@ -16,7 +16,7 @@ export const getUrl = async(shortUrl) =>{
   querySnapshot.forEach((doc) => {
     tempObj = {id:doc.id, ...doc.data()}
   });
-  
+  // console.log(tempObj);
   if(Object.keys(tempObj).length){
     return tempObj
   }

@@ -13,9 +13,10 @@ const Redirect = () => {
       const res = await getUrl(BASE_URL+id)
       setUrl(res);
     }
-    return () => unsub()
+    unsub()
   }, [id])
   
+  // console.log(url);
   //*Redirect function
   const redirectToUrl = async() =>{
     await incrementVisitedUrl(url.id, url.visited)
