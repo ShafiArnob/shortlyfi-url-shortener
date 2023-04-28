@@ -13,6 +13,7 @@ const Stats = () => {
   const [copied, setCopied] = useState(false)
 
   useEffect( ()=>{
+    document.title = 'Stats | Shortyfi';
     async function unsub() {
       const res = await getUrl(BASE_URL+id)
       setUrl(res);

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 import { BASE_URL } from "../constant/urlConstant";
 import { createUrl, getUrl } from "../firebase/firebaseFunctions";
@@ -10,7 +10,12 @@ const Home = () => {
   const [alias, setAlias] = useState('')
   const [urlExists, setUrlExists] = useState(false)
   const [loader, setLoader] = useState(false)
-  
+
+  //set page title
+  useEffect(() => {
+    document.title = 'Home | Shortyfi';
+  }, []);
+
   //check if long url has http or https in front
   const checkLongUrl = (url) => {
     if(url.includes('http://', 0) || url.includes('https://', 0)){
