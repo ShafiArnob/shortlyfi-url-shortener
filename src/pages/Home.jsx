@@ -12,11 +12,11 @@ const Home = () => {
   const [loader, setLoader] = useState(false)
   
   //check if long url has http or https in front
-  const checkHttp = (url) => {
-    if(url.includes('http://') || url.includes('https://')){
-      return true
+  const checkLongUrl = (url) => {
+    if(url.includes('http://', 0) || url.includes('https://', 0)){
+      return url
     }
-    return false
+    return `http://${url}`
   }
   //generates short URL using alias or uuid first 6 chars
   const generateShortUrl = (alias = '') => {
@@ -33,19 +33,15 @@ const Home = () => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     setLoader(true)
-    const urlIncludesHttp = checkHttp(longUrl)
-    if(!urlIncludesHttp){
-      setLongUrl(`http://${longUrl}`)
-    } 
+    
     const data = {
-      longUrl: longUrl,
+      longUrl: checkLongUrl(longUrl),
       shortUrl: alias ? generateShortUrl(alias) : generateShortUrl(),
       visited: 0
     }
     
     //check if short url exists or not
     const checkUrlExists = await getUrl(data.shortUrl)
-    
     //if does not exists sets error 
     if(Object.keys(checkUrlExists).length > 0){
       setUrlExists(true)
