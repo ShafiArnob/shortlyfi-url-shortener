@@ -32,4 +32,16 @@ export const incrementVisitedUrl = async (id, prevVisited) =>{
   await updateDoc(ref, {
     visited: ++prevVisited
   });
-} 
+}
+
+export const getUrlsByUser = async(user) => {
+  let urls = []
+  const q = query(collection(db, "urls"), where("user", "==", user));
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    urls.push({id:doc.id, ...doc.data()})
+  });
+
+  return urls
+}
