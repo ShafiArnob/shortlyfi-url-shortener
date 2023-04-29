@@ -11,7 +11,7 @@ const Sidebar = () => {
   useEffect(()=>{
     async function getUrlsData(){
       const userId = document.cookie.split(';').find(c=>c.includes('user'))?.split('=')[1]
-      console.log(userId);
+      // console.log(userId);
       let urls
       if(userId){
         urls = await getUrlsByUser(userId)
@@ -36,7 +36,7 @@ const Sidebar = () => {
             {urlData.length==0 && <h3 className="text-xl font-bold text-red-400">No URLs Set</h3>}
             { urlData && urlData?.map(url=>(
                   <div key={url.id} className="p-4 my-3 max-w-xs bg-[#252740] text-gray-200 rounded-2xl">
-                    <p className="overflow-hidden truncate text-base"> Short URL: <span className="text-base font-semibold">{url.shortUrl}</span></p>
+                    <p className="overflow-hidden text-xs"><span className="text-base font-semibold">{url.shortUrl}</span></p>
                     <p className="overflow-hidden truncate text-xs"> Long Url: <span className="text-xs font-semibold">{url.longUrl}</span></p>
                   </div>
             ))
