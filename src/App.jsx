@@ -25,7 +25,7 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-      <Sidebar/>
+      {/* <Sidebar/> */}
     </SIDEBAR_CONTEXT.Provider>
   )
 }

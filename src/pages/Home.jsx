@@ -5,6 +5,7 @@ import { BASE_URL } from "../constant/urlConstant";
 import { createUrl, getUrl } from "../firebase/firebaseFunctions";
 import { ScaleLoader } from "react-spinners";
 import { SIDEBAR_CONTEXT } from "../App";
+import Sidebar from "../components/Sidebar";
 
 const Home = () => {
   const [longUrl, setLongUrl] = useState('')
@@ -62,6 +63,7 @@ const Home = () => {
       user: userCookie(),
       longUrl: checkLongUrl(longUrl),
       shortUrl: alias ? generateShortUrl(alias) : generateShortUrl(),
+      // alias:alias,
       visited: 0
     }
     
@@ -86,9 +88,9 @@ const Home = () => {
   return (
     <div className="h-[89vh] ">
       
-      <div className="flex justify-center items-center p-4">
-        <div className="bg-transparent hover:bg-[#7b54e9]  text-[#7b54e9] font-semibold hover:text-white py-0 px-4 border border-[#7b54e9] hover:border-transparent rounded-full">
-          <button className="p-2" onClick={()=>setToggleSidebar(prev=>!prev)}>My Urls</button>
+      <div className="flex justify-center items-center p-4 ">
+        <div className="bg-transparent hover:bg-[#7b54e9]  text-[#7b54e9] font-semibold hover:text-white   py-0 px-4 border-2 border-[#7b54e9] hover:border-transparent rounded-full">
+          <button className="p-2 font-semibold" onClick={()=>setToggleSidebar(prev=>!prev)}>My Urls</button>
         </div>
       </div>
 
@@ -124,6 +126,7 @@ const Home = () => {
           }
 
     </div>
+    <Sidebar/>
     </div>
   )
 }

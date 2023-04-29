@@ -7,6 +7,7 @@ import { BASE_URL } from "../constant/urlConstant";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import { SIDEBAR_CONTEXT } from "../App";
+import Sidebar from "../components/Sidebar";
 
 const Stats = () => {
   let { id } = useParams();
@@ -78,6 +79,7 @@ const Stats = () => {
 
         </div>
       </div>
+    <Sidebar/>
     </div>
   )
 }
