@@ -1,15 +1,18 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 import { BASE_URL } from "../constant/urlConstant";
 import { createUrl, getUrl } from "../firebase/firebaseFunctions";
 import { ScaleLoader } from "react-spinners";
+import { SIDEBAR_CONTEXT } from "../App";
 
 const Home = () => {
   const [longUrl, setLongUrl] = useState('')
   const [alias, setAlias] = useState('')
   const [urlExists, setUrlExists] = useState(false)
   const [loader, setLoader] = useState(false)
+
+  const {setToggleSidebar} = useContext(SIDEBAR_CONTEXT)
 
   //set page title
   useEffect(() => {
@@ -64,7 +67,15 @@ const Home = () => {
   }
 
   return (
-    <div className="h-[100vh]  flex flex-col justify-center items-center">
+    <div className="h-[89vh] ">
+      
+      <div className="flex justify-center items-center p-4">
+        <div className="bg-transparent hover:bg-[#7b54e9]  text-[#7b54e9] font-semibold hover:text-white py-0 px-4 border border-[#7b54e9] hover:border-transparent rounded-full">
+          <button className="p-2" onClick={()=>setToggleSidebar(prev=>!prev)}>My Urls</button>
+        </div>
+      </div>
+
+      <div className="h-full flex flex-col justify-center items-center">
       {/* form container */}
       <div className="bg-[#1b1c30] p-8 w-11/12  max-w-sm rounded-2xl z-20 opacity-85 border-t-2 border-l-2 border-[#7b54e9] border-opacity-30 ">
         <form onSubmit={handleSubmit} action="" className="flex flex-col space-y-4">
@@ -95,6 +106,7 @@ const Home = () => {
             )
           }
 
+    </div>
     </div>
   )
 }
