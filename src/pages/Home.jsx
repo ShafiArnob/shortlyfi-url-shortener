@@ -18,7 +18,23 @@ const Home = () => {
   useEffect(() => {
     document.title = 'Home | Shortyfi';
   }, []);
+  
+  //check if new user if not create new user
+  const userCookie = () =>{
+    const user = document.cookie.split(';').find(c=>c.includes('user'))
+    if(user){
+      return user.split('=')[1]
+    }
+    else{
+      let userId = uuidv4() 
+      const oneYearFromNow = new Date();
+      oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
 
+      document.cookie = `user=${userId}; expires=${oneYearFromNow}`
+      return userId
+    }
+  }
+  
   //check if long url has http or https in front
   const checkLongUrl = (url) => {
     if(url.includes('http://', 0) || url.includes('https://', 0)){
@@ -43,6 +59,7 @@ const Home = () => {
     setLoader(true)
     
     const data = {
+      user: userCookie(),
       longUrl: checkLongUrl(longUrl),
       shortUrl: alias ? generateShortUrl(alias) : generateShortUrl(),
       visited: 0
