@@ -17,7 +17,6 @@ const Redirect = () => {
     unsub()
   }, [id])
   
-  // console.log(url);
   //*Redirect function
   const redirectToUrl = async() =>{
     await incrementVisitedUrl(url.id, url.visited)

@@ -43,6 +43,7 @@ const Home = () => {
     }
     return `http://${url}`
   }
+  
   //generates short URL using alias or uuid first 6 chars
   const generateShortUrl = (alias = '') => {
     let url;

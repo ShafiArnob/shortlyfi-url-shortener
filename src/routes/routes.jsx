@@ -15,7 +15,7 @@ const routes = createBrowserRouter([
   },
   {
     path: ":id/stats",
-    element: (<Stats/>)
+    element: <Stats/>
   },
   {
     path: "*",

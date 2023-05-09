@@ -5,8 +5,6 @@ import { getUrlsByUser } from "../firebase/firebaseFunctions";
 import {RiShareForwardLine} from 'react-icons/ri'
 
 const Sidebar = () => {
-  // const [click, setClicked] = useState(true);
-
   const {toggleSidebar, setToggleSidebar} = useContext(SIDEBAR_CONTEXT)
   const [urlData, setUrlData] = useState([])
 
@@ -14,11 +12,8 @@ const Sidebar = () => {
   useEffect(()=>{
     async function getUrlsData(){
       const userId = document.cookie.split(';').find(c=>c.includes('user'))?.split('=')[1]
-      // console.log(userId);
-      let urls
       if(userId){
-        urls = await getUrlsByUser(userId)
-        // console.log(urls);
+        const urls = await getUrlsByUser(userId)
         setUrlData(urls)
       }
     }
@@ -28,7 +23,7 @@ const Sidebar = () => {
     <div>
       <div className='relative min-w-[100vw]'>
         {/* sidebar container */}
-        <div className={`${toggleSidebar? 'right-0' : '-right-96'} fixed p-4 top-0 text-white h-full bg-[#1b1c30]   transition-all duration-500 ease-out z-30 `}>
+        <div className={`${toggleSidebar? 'right-0' : '-right-96'} fixed p-4 top-0 text-white h-full bg-[#1b1c30] transition-all duration-500 ease-out z-30 `}>
           {/* header */}
           <div className="flex justify-between items-center my-4">
             <h2 className="text-2xl font-bold text-[#ad8fff]">Your recent URLs</h2>
