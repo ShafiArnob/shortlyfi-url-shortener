@@ -1,11 +1,5 @@
 # Shortyfi - URL Shortener
 
-## Experiance In Tech Stack
-| Name  | Experiance |
-| ------|------------- |
-| React | 6 months |
-| Firebase Database | 3 months |
-
 ## LIVE
 ### [Shortyfi](https://shortyfi.web.app/)
 
